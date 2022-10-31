@@ -3,4 +3,6 @@ app/*
 !app/main.go
 !go.mod
 !go.sum
+data/*
+!data/.gitkeep
 .env

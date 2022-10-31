@@ -12,3 +12,17 @@ services:
     # Important to bind/mount your codebase dir to /app dir for live reload
     volumes:
       - ./app:/app
+
+    mysql:
+      image: mysql:$MYSQL_VER
+      tty: true
+      volumes:
+        - ./data/mysql:/var/lib/mysql
+        # - ./config/mysql/my.cnf:/etc/mysql/my.cnf
+      ports: 
+        - $MYSQL_PORT:3306
+      environment:
+        - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+        - MYSQL_USER=$MYSQL_USER
+        - MYSQL_DATABASE=$MYSQL_DATABASE
+        - MYSQL_PASSWORD=$MYSQL_PASSWORD
