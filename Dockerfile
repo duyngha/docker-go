@@ -1,10 +1,14 @@
-# Create another stage called "dev" that is based off of our "base" stage (so we have golang available to us)
-FROM base as dev
+# Choose whatever you want, version >= 1.16
+ARG GO_VERSION
 
-# Install the air binary so we get live code-reloading when we save files
-RUN curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+FROM golang:${GO_VERSION}
 
-# Run the air command in the directory where our code will live
-WORKDIR /opt/app/api
+WORKDIR /app
 
+RUN go install github.com/cosmtrek/air@latest
+
+COPY ./app/go.mod ./app/go.sum ./
+RUN go mod download
+
+# CMD ["air", "-c", ".air.toml"]
 CMD ["air"]

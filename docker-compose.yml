@@ -1,17 +1,14 @@
 version: "3.9"
 services:
-  app:
+  web:
     build:
-      dockerfile: Dockerfile
       context: .
-      target: dev
-    volumes:
-    - .:/opt/app/api
-    environment:
-      API_SERVER_ADDR: ":3000"
-      DATABASE_URL: postgres://local-dev@db/api?sslmode=disable
+      # Correct the path to your Dockerfile
+      dockerfile: Dockerfile
+      args:
+        GO_VERSION: $GO_VERSION
     ports:
-    - "3000:3000"
-
-volumes:
-  data:
+      - $WEB_PORT:3000
+    # Important to bind/mount your codebase dir to /app dir for live reload
+    volumes:
+      - ./app:/app

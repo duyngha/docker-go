@@ -1,1 +1,6 @@
-WIP
+app/*
+!app/.gitkeep
+!app/main.go
+!go.mod
+!go.sum
+.env
