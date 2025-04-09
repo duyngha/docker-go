@@ -10,3 +10,8 @@ cp .env.example .env
 ```bash
 docker-compose up --build
 ```
+
+- Step 3: Update the entry point in `.air.toml`
+```
+cmd = "go build -o ./tmp/main ./cmd/main.go" // change this path ./cmd/main.go
+```

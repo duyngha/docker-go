@@ -8,7 +8,7 @@ WORKDIR /app
 ARG AIR_VERSION=v1.50.0
 RUN go install github.com/cosmtrek/air@${AIR_VERSION}
 
-COPY ./app/go.mod ./app/go.sum ./
+COPY ./app/go.mod ./
 RUN go mod download
 
 # CMD ["air", "-c", ".air.toml"]
